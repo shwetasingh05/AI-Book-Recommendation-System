@@ -35,8 +35,8 @@ const modalInfoLink = document.getElementById('modal-info-link');
 // ==========================================
 // API Configuration
 // ==========================================
-const API_BASE_URL = 'http://127.0.0.1:5000/recommend?book=';
-const BOOK_DETAILS_URL = 'http://127.0.0.1:5000/book_details?title=';
+const API_BASE_URL = 'https://ai-book-recommendation-system-s5si.onrender.com/recommend?book=';
+const BOOK_DETAILS_URL = 'https://ai-book-recommendation-system-s5si.onrender.com/book_details?title=';
 
 // ==========================================
 // Search Form Handler (ML backend)
