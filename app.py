@@ -20,6 +20,6 @@ def book_details():
     if not details:
         return jsonify({"error": "Book not found"}), 404
     return jsonify(details)
-
+    
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=10000)
