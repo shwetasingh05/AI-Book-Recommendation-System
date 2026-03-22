@@ -53,11 +53,12 @@ AI-Book-Recommendation-System/
 │     └── clean_books_dataset.csv  
 │── frontend/ 
 │     ├── assests/
-        └──books.json
+│       └──books.json
 │     ├── index.html  
 │     ├── script.js  
 │     ├── style.css 
 │     └── book.html 
+│── requirements.txt
 
 ## 🎯 Future Improvements
 
