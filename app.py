@@ -3,7 +3,8 @@ from flask_cors import CORS
 from model import recommend_hybrid, get_book_details
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/")
 def home():
