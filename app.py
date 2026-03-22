@@ -5,6 +5,10 @@ from model import recommend_hybrid, get_book_details
 app = Flask(__name__)
 CORS(app)
 
+@app.route("/")
+def home():
+    return "AI Book Recommendation System is running!"
+    
 @app.route("/recommend", methods=["GET"])
 def recommend():
     book = request.args.get("book")
