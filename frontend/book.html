@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details - AI Recommendation System</title>
+    <!-- Modern Typography: Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="hero" style="padding: 2rem 0; text-align: left;">
+        <div class="container hero-content" style="display: flex; align-items: center; justify-content: space-between;">
+            <div>
+                <a href="index.html" class="back-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Back to Search
+                </a>
+            </div>
+            <h1 style="font-size: 1.5rem; margin-bottom: 0;">Book Details</h1>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="container main-content">
+        <!-- Loading Spinner -->
+        <div id="loading" class="loading-state">
+            <div class="spinner"></div>
+            <p>Fetching book details...</p>
+        </div>
+
+        <!-- Error Message Container -->
+        <div id="error-message" class="error-state hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <span id="error-text">Book details could not be found.</span>
+        </div>
+
+        <!-- Book Details Container -->
+        <section id="book-details-container" class="book-details-layout hidden">
+            <div class="book-cover-col">
+                <img id="book-cover" src="" alt="Book Cover" class="detail-cover-image">
+                <div class="book-actions">
+                    <a id="preview-link" href="#" target="_blank" class="primary-btn hidden">Preview Book</a>
+                    <a id="info-link" href="#" target="_blank" class="secondary-btn hidden">More Info</a>
+                </div>
+            </div>
+            <div class="book-info-col">
+                <h1 id="b-title" class="b-title">Loading Title...</h1>
+                <h3 id="b-subtitle" class="b-subtitle"></h3>
+                <p class="b-author">By <span id="b-authors">Unknown</span></p>
+
+                <div class="b-meta-chips">
+                    <span class="chip" id="b-categories" title="Categories"></span>
+                    <span class="chip" id="b-pages" title="Page Count"></span>
+                    <span class="chip" id="b-published" title="Published Date"></span>
+                    <span class="chip" id="b-rating" title="Rating">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                            fill="currentColor" stroke="none" style="margin-right: 4px;">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
+                        </svg>
+                        <span id="b-rating-value">N/A</span>
+                    </span>
+                </div>
+
+                <div class="b-publisher-info">
+                    <strong>Publisher:</strong> <span id="b-publisher">N/A</span>
+                </div>
+
+                <div class="b-description-box">
+                    <h3>Description</h3>
+                    <p id="b-description">No description available.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer style="margin-top: auto;">
+        <div class="container footer-content">
+            <p>&copy; 2026. AI Book Recommendation System.</p>
+        </div>
+    </footer>
+
+    <script src="book.js"></script>
+</body>
+
+</html>

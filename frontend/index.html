@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Book Recommendation System</title>
+    <!-- Modern Typography: Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header / Hero Section -->
+    <header class="hero">
+        <div class="container hero-content">
+            <span class="badge">Powered by Machine Learning</span>
+            <h1>AI Book Recommendation System</h1>
+            <p class="subtitle">Discover your next great read tailored to your taste, using advanced natural language
+                processing and content similarity.</p>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="container main-content">
+        <!-- Search Interface -->
+        <section class="search-section">
+            <form id="search-form" class="search-form">
+                <div class="search-input-wrapper">
+                    <!-- Search Icon SVG -->
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" id="search-input" placeholder="Search for a book (e.g., Harry Potter)..."
+                        autocomplete="off" required>
+                </div>
+                <button type="submit" class="search-button">Recommend</button>
+            </form>
+        </section>
+
+        <!-- Recommendation Results Area -->
+        <section class="results-section">
+
+            <!-- Loading Spinner -->
+            <div id="loading" class="loading-state hidden">
+                <div class="spinner"></div>
+                <p>Analyzing library & computing similarity scores...</p>
+            </div>
+
+            <!-- Error Message Container -->
+            <div id="error-message" class="error-state hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <span id="error-text">An error occurred while fetching recommendations.</span>
+            </div>
+
+            <!-- Results Header -->
+            <div id="results-header" class="results-header hidden">
+                <h2>Recommended Books</h2>
+                <p>Based on content similarity and popularity.</p>
+            </div>
+
+            <!-- Results Grid for Book Cards -->
+            <div id="results-grid" class="results-grid">
+                <!-- Book Cards Dynamically Injected Here -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="footer-icon">
+                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
+                </svg>
+                <span>AI Book Recommendation System</span>
+            </div>
+            <p>&copy; 2026. Designed for a world-class reading experience.</p>
+        </div>
+    </footer>
+
+    <!-- ======= BOOK DETAILS MODAL ======= -->
+    <div id="book-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-label="Book Details">
+        <div class="modal-panel">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button id="modal-close-btn" class="back-link modal-back-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Back to Search
+                </button>
+                <span class="modal-title-label">Book Details</span>
+            </div>
+
+            <!-- Modal Loading Spinner -->
+            <div id="modal-loading" class="loading-state hidden">
+                <div class="spinner"></div>
+                <p>Fetching book details...</p>
+            </div>
+
+            <!-- Modal Error -->
+            <div id="modal-error" class="error-state hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <span id="modal-error-text">Book details could not be found.</span>
+            </div>
+
+            <!-- Modal Book Details -->
+            <section id="modal-book-details" class="book-details-layout hidden">
+                <div class="book-cover-col">
+                    <img id="modal-cover" src="" alt="Book Cover" class="detail-cover-image">
+                    <div class="book-actions">
+                        <a id="modal-preview-link" href="#" target="_blank" class="primary-btn hidden">View on Wikipedia</a>
+                        <a id="modal-info-link" href="#" target="_blank" class="secondary-btn hidden">More Info</a>
+                    </div>
+                </div>
+                <div class="book-info-col">
+                    <h1 id="modal-title" class="b-title">Loading Title...</h1>
+                    <h3 id="modal-subtitle" class="b-subtitle"></h3>
+                    <p class="b-author">By <span id="modal-authors">Unknown</span></p>
+
+                    <div class="b-meta-chips">
+                        <span class="chip" id="modal-categories"></span>
+                        <span class="chip" id="modal-pages"></span>
+                        <span class="chip" id="modal-published"></span>
+                        <span class="chip" id="modal-rating">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor" stroke="none" style="margin-right: 4px;">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                </polygon>
+                            </svg>
+                            <span id="modal-rating-value">N/A</span>
+                        </span>
+                    </div>
+
+                    <div class="b-publisher-info">
+                        <strong>Publisher:</strong> <span id="modal-publisher">N/A</span>
+                    </div>
+
+                    <div class="b-description-box">
+                        <h3>Description</h3>
+                        <p id="modal-description">No description available.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
