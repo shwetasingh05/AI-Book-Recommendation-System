@@ -47,14 +47,17 @@ http://127.0.0.1:5000
 
 AI-Book-Recommendation-System/  
 │── app.py  
-│── model.py  
-│── requirements.txt  
+│── model.py   
 │── dataset/  
+│     ├── BOOKS.xlsx
 │     └── clean_books_dataset.csv  
-│── frontend/  
+│── frontend/ 
+│     ├── assests/
+        └──books.json
 │     ├── index.html  
 │     ├── script.js  
-│     └── style.css  
+│     ├── style.css 
+│     └── book.html 
 
 ## 🎯 Future Improvements
 
